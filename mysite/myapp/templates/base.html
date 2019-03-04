@@ -24,15 +24,20 @@
     <div class="grid-item">{{ body }}</div>
     <div class="grid-item"></div>
     <div class="grid-item"></div>
+    <div class="grid-item"><ul> {{ q_list }} </ul></div>
     <div class="grid-item"></div>
     <div class="grid-item"></div>
+    <div class="grid-item"><p class = "button">Look, a button!</p></div>
     <div class="grid-item"></div>
-    <div class="grid-item"><p class="button">Look, a button!</p></div>
-    <div class="grid-item"></div>
-  <div>
+    <div id="app-2">
+    <form method="POST" action ="">{% csrf_token %}<table>{{ form }} {{ form }}</table><input type="submit" value="Add Quest"</input></form>
+    
+  </form>
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
   <script src="{% static "js/vendor/jquery.js" %}"></script>
   <script src="{% static "js/vendor/what-input.js" %}"></script>
   <script src="{% static "vendor/foundation.js" %}"></script>
   <script src="{% static "js/app.js" %}"></script>
+
 </body>
 </html>
