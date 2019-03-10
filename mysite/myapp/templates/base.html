@@ -22,22 +22,51 @@
   <div class="grid-container">
     <div class="grid-item"></div>
     <div class="grid-item">{{ body }}</div>
+    <div class="grid-item">
+      <div id="app-4">
+        <span v-if="seen">
+          <ul>
+            {% for item in q_list %}
+              <li> {{ item }} </li>
+            {% endfor %}
+          </ul>
+        </span>
+        <span v-if="unseen">
+          <ul>
+            <li v-for="todo in Quests">
+              {% verbatim %}
+              {{ todo.QuestName }}
+              {%endverbatim%}
+            </li>
+          </ul>
+      </span>
+      </div>
+        </div>
     <div class="grid-item"></div>
     <div class="grid-item"></div>
-    <div class="grid-item"><ul> {{ q_list }} </ul></div>
-    <div class="grid-item"></div>
-    <div class="grid-item"></div>
+    <div class="grid-item"><div id ="app-2">
+        <span v-bind:title="message">
+          Hover your mouse over me for a few seconds to see my dynamically bound title!
+        </span>
+    </div></div>
+    <div class="grid-item"><div id ="app"> {% verbatim %} {{ message }} {% endverbatim %}</div></div>
     <div class="grid-item"><p class = "button">Look, a button!</p></div>
     <div class="grid-item"></div>
     <div id="app-2">
-    <form method="POST" action ="">{% csrf_token %}<table>{{ form }} {{ form }}</table><input type="submit" value="Add Quest"</input></form>
-    
+    <form method="POST" action ="">{% csrf_token %}<table>{{ form }}</table><input type="submit" value="Add Quest"</input></form>
+
   </form>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <script src="{% static "myvue.js" %}"></script>
+  <script src="{% static "vue.js" %}"></script>
   <script src="{% static "js/vendor/jquery.js" %}"></script>
   <script src="{% static "js/vendor/what-input.js" %}"></script>
-  <script src="{% static "vendor/foundation.js" %}"></script>
+  <script src="{% static "foundation.js" %}"></script>
   <script src="{% static "js/app.js" %}"></script>
+
+
+
 
 </body>
 </html>
