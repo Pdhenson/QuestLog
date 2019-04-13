@@ -20,7 +20,7 @@ class Steps(models.Model):
     step_three = models.CharField(max_length=255)
     step_four = models.CharField(max_length=255)
     step_five = models.CharField(max_length=255)
-    completion_percent = models.FloatField()
+    completion_percent = models.FloatField(default = '0.0')
 
     def __str__(self):
         return self.title_field

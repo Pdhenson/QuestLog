@@ -55,6 +55,7 @@ def newQ(request):
     step5_list = []
 
 
+
     for i in range(0,2):
         for item in q_list:
             if i == 0:
@@ -62,23 +63,21 @@ def newQ(request):
             elif i == 1:
                 task_list.append([item.task_field])
 
-    for j in range(0,4):
+    for j in range(0,5):
         for item2 in s_list:
             if j == 0:
-                step1_list.append(item2.step_one)
+                step1_list.append([item2.step_one])
             elif j == 1:
-                step2_list.append(item2.step_two)
+                step2_list.append([item2.step_two])
             elif j == 2:
-                step3_list.append(item2.step_three)
+                step3_list.append([item2.step_three])
             elif j == 3:
-                step4_list.append(item2.step_four)
+                step4_list.append([item2.step_four])
             elif j == 4:
-                step5_list.append(item2.step_five)
+                step5_list.append([item2.step_five])
+
 
         multi_list = zip(title_list, task_list, step1_list, step2_list, step3_list, step4_list, step5_list)
-
-    #    j += 1
-    #    i += 1
 
     context = {
         "body":"Welcome to the Quest Board!",
@@ -111,6 +110,7 @@ def post_quest(request):
             new_steps.step_three = form_instance.cleaned_data["step_three"]
             new_steps.step_four = form_instance.cleaned_data["step_four"]
             new_steps.step_five = form_instance.cleaned_data["step_five"]
+            new_steps.save()
             new_quest.save()
             form_instance = forms.QuestForm()
         else:
