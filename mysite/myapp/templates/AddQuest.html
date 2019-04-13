@@ -1,0 +1,23 @@
+{% load static %}
+{%include "NavBar.html"%}
+<!DOCTYPE html>
+<html class="no-js" lang="en" dir="ltr">
+  <head>
+    <style>
+
+    </style>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="{% static "css/foundation.css" %}">
+    <link rel="stylesheet" href="{% static "css/app.css" %}">
+</head>
+<body>
+
+<form method="POST" action ="">{% csrf_token %}<table>{{ form }}</table><input type="submit" value="Add Quest"</input></form>
+
+<script src="{% static "foundation.js" %}"></script>
+<script src="{% static "js/app.js" %}"></script>
+</body>
+  </html>

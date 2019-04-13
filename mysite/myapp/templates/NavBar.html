@@ -1,0 +1,62 @@
+{% load static %}
+<!DOCTYPE html>
+<html class="no-js" lang="en" dir="ltr">
+  <head>
+    <style>
+      .grid-container{
+        display: grid;
+        grid-gap: 50px 100px;
+        grid-template-columns: auto auto auto;
+        background-color: #FFFFFF;
+        padding: 10px;
+      }
+      /* Add a black background color to the top navigation */
+      .topnav {
+        background-color: #030000;
+        overflow: hidden;
+      }
+
+      /* Style the links inside the navigation bar */
+      .topnav a {
+        float: left;
+        color: #f04911;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        font-size: 17px;
+      }
+
+        /* Change the color of links on hover */
+      .topnav a:hover {
+        background-color: #ddd;
+        color: black;
+      }
+
+      /* Add a color to the active/current link */
+      .topnav a.active {
+        background-color: #ff241c;
+        color: white;
+      }
+    </style>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="{% static "css/foundation.css" %}">
+    <link rel="stylesheet" href="{% static "css/app.css" %}">
+</head>
+<body>
+  <div class="topnav">
+  <a class="active" href="/">Home</a>
+  <a href="/quests">My Quests</a>
+  <a href="/newQ">Available Quests</a>
+  <a href="/PostQuest">Post a Quest</a>
+  <a href="/login">Login</a>
+  <a href="/chat">Chat</a>
+</div>
+
+
+<script src="{% static "foundation.js" %}"></script>
+<script src="{% static "js/app.js" %}"></script>
+</body>
+  </html>

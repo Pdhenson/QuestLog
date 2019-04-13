@@ -10,3 +10,17 @@ class Quest(models.Model):
 
     def __str__(self):
         return self.title_field
+
+class Steps(models.Model):
+    user_name = models.CharField(max_length=30)
+    title_field = models.CharField(max_length=30)
+    date_start = models.DateField(auto_now=True)
+    step_one = models.CharField(max_length=255)
+    step_two = models.CharField(max_length=255)
+    step_three = models.CharField(max_length=255)
+    step_four = models.CharField(max_length=255)
+    step_five = models.CharField(max_length=255)
+    completion_percent = models.FloatField()
+
+    def __str__(self):
+        return self.title_field

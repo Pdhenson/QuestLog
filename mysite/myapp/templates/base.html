@@ -1,16 +1,9 @@
 {% load static %}
+{%include "NavBar.html"%}
 <!DOCTYPE html>
 <html class="no-js" lang="en" dir="ltr">
   <head>
-    <style>
-      .grid-container{
-        display: grid;
-        grid-gap: 50px 100px;
-        grid-template-columns: auto auto auto;
-        background-color: #FFFFFF;
-        padding: 10px;
-      }
-    </style>
+
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,43 +12,43 @@
     <link rel="stylesheet" href="{% static "css/app.css" %}">
 </head>
 <body>
-  <div class="grid-container">
-    <div class="grid-item"></div>
-    <div class="grid-item">{{ body }}</div>
-    <div class="grid-item">
-      <div id="app-4">
-        <span v-if="seen">
-          <ul>
-            {% for item in q_list %}
-              <li> {{ item }} </li>
-            {% endfor %}
-          </ul>
-        </span>
-        <span v-if="unseen">
-          <ul>
-            <li v-for="todo in Quests">
-              {% verbatim %}
-              {{ todo.QuestName }}
-              {%endverbatim%}
-            </li>
-          </ul>
-      </span>
-      </div>
-        </div>
-    <div class="grid-item"></div>
-    <div class="grid-item"></div>
-    <div class="grid-item"><div id ="app-2">
-        <span v-bind:title="message">
-          Hover your mouse over me for a few seconds to see my dynamically bound title!
-        </span>
-    </div></div>
-    <div class="grid-item"><div id ="app"> {% verbatim %} {{ message }} {% endverbatim %}</div></div>
-    <div class="grid-item"><p class = "button">Look, a button!</p></div>
-    <div class="grid-item"></div>
-    <div id="app-2">
-    <form method="POST" action ="">{% csrf_token %}<table>{{ form }}</table><input type="submit" value="Add Quest"</input></form>
 
-  </form>
+
+<div class="grid-container">
+  <div class="grid-item"></div>
+  <div class="grid-item">{{ body }}</div>
+  <div class="grid-item">
+    <div id="app-4">
+      <span v-if="seen">
+        <ul>
+          {% for item in q_list %}
+            <li> {{ item }} </li>
+          {% endfor %}
+        </ul>
+      </span>
+      <span v-if="unseen">
+        <ul>
+          <li v-for="todo in Quests">
+            {% verbatim %}
+            {{ todo.QuestName }}
+            {%endverbatim%}
+          </li>
+        </ul>
+    </span>
+    </div>
+      </div>
+  <div class="grid-item"></div>
+  <div class="grid-item"></div>
+  <div class="grid-item"><div id ="app-2">
+      <span v-bind:title="message">
+        Hover your mouse over me for a few seconds to see my dynamically bound title!
+      </span>
+  </div></div>
+  <div class="grid-item"><div id ="app"> {% verbatim %} {{ message }} {% endverbatim %}</div></div>
+  <div class="grid-item"><p class = "button">Look, a button!</p></div>
+  <div class="grid-item"></div>
+  <div id="app-2">
+  <form method="POST" action ="">{% csrf_token %}<table>{{ form }}</table><input type="submit" value="Add Quest"</input></form>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/vue"></script>
   <script src="{% static "myvue.js" %}"></script>

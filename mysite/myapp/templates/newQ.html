@@ -1,0 +1,22 @@
+{% load static %}
+{%include "NavBar.html"%}
+{%include "table.html"%}
+<!DOCTYPE html>
+<html class="no-js" lang="en" dir="ltr">
+  <head>
+    <style>
+
+    </style>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="{% static "css/foundation.css" %}">
+    <link rel="stylesheet" href="{% static "css/app.css" %}">
+</head>
+<body>
+
+<script src="{% static "foundation.js" %}"></script>
+<script src="{% static "js/app.js" %}"></script>
+</body>
+  </html>
