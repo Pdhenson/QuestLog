@@ -40,14 +40,24 @@ def index(request):
 def newQ(request):
     #Form Submission
 
-
+    if request.method == 'POST':
+        values = request.POST.get('idNum')
+        print(values)
+        updateUser = models.Quest.objects.filter(id = values)
+        new_quest = models.Quest()
+        new_steps = models.Steps()
+        user = request.user
+        models.Quest.objects.filter(id = values).update(user_name= str(user))
+        new_quest.save()
 
     q_list = models.Quest.objects.all()
     s_list = models.Steps.objects.all()
 
     multi_list = []
     title_list = []
+    titleId = []
     task_list = []
+    stepId = []
     step1_list = []
     step2_list = []
     step3_list = []
@@ -60,6 +70,7 @@ def newQ(request):
         for item in q_list:
             if i == 0:
                 title_list.append([item.title_field])
+                titleId.append(item.id)
             elif i == 1:
                 task_list.append([item.task_field])
 
@@ -67,6 +78,7 @@ def newQ(request):
         for item2 in s_list:
             if j == 0:
                 step1_list.append([item2.step_one])
+                stepId.append(item2.id)
             elif j == 1:
                 step2_list.append([item2.step_two])
             elif j == 2:
@@ -77,7 +89,9 @@ def newQ(request):
                 step5_list.append([item2.step_five])
 
 
-        multi_list = zip(title_list, task_list, step1_list, step2_list, step3_list, step4_list, step5_list)
+        multi_list = zip(title_list, task_list, step1_list, step2_list, step3_list, step4_list, step5_list, titleId, stepId)
+
+
 
     context = {
         "body":"Welcome to the Quest Board!",

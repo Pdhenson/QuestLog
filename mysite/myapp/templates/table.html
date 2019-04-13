@@ -1,26 +1,54 @@
 <!DOCTYPE html>
-<!--# this file was provided by: https://colorlib.com/wp/template/fixed-header-table/-->
+<!--# this file was provided by: https://colorlib.com/wp/template/fixed-header-table/
+the file has since been modifed by me.-->
 <html lang="en">
 <head>
-	<title>Table V04</title>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-<!--===============================================================================================-->
-	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/perfect-scrollbar/perfect-scrollbar.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="css/util.css">
-	<link rel="stylesheet" type="text/css" href="css/main.css">
-<!--===============================================================================================-->
+	<style>
+
+
+thead,
+tfoot {
+    background-color: #3f87a6;
+    color: #fff;
+}
+
+tbody {
+    background-color: #e4f0f5;
+}
+
+caption {
+    padding: 10px;
+    caption-side: bottom;
+}
+
+table {
+    border-collapse: collapse;
+    border: 2px solid rgb(200, 200, 200);
+    letter-spacing: 1px;
+    font-family: Spectral;
+    font-size: 1rem;
+}
+
+td,
+th {
+    border: 1px solid rgb(190, 190, 190);
+    padding: 5px 5px;
+}
+
+td {
+    text-align: left-align;
+}
+
+.button:hover {background-color: #3e8e41}
+
+.button:active {
+background-color: #3e8e41;
+box-shadow: 0 5px #666;
+transform: translateY(4px);
+}
+
+	</style>
+
 </head>
 <body>
 
@@ -32,10 +60,7 @@
 						<table>
 							<thead>
 								<tr class="row100 head">
-									<th class="cell100 column1">Quest name</th>
-									<th class="cell100 column2">Description</th>
-									<th class="cell100 column3">Steps</th>
-									<th class="cell100 column4">Completion Status</th>
+
 								</tr>
 							</thead>
 						</table>
@@ -43,45 +68,28 @@
 
 					<div class="table100-body js-pscroll">
 						<table>
-							<tbody>
-								{% for i, j, k, l, m, n, o in multi_list  %}
-										<tr class="row100 body">
-											<td class="cell100 column1"> {{ i }}</td>
-											<td class="cell100 column2"> {{ j }}</td>
-											<td class="cell100 column3"> {{ k }}, {{ l }} , {{ m }}, {{ n }}, {{ o }}</td>
-										</tr>
-								{% endfor %}
-							</tbody>
+							<thead>
+								<th class="cell100 column0"></th>
+								<th class="cell100 column1">Quest name</th>
+								<th class="cell100 column2">Description</th>
+								<th class="cell100 column3">Steps</th>
+								<tbody>
+									{% for i, j, k, l, m, n, o, p, q in multi_list  %}
+											<tr class="row100 body">
+												<td class="cell100 column1"> <form method="POST" action ="">{% csrf_token %}<button type="submit" class = "button" value={{ p }} name="idNum">Accept Quest</button></form></td>
+												<td class="cell100 column2"> {{ i }}</td>
+												<td class="cell100 column3"> {{ j }}</td>
+												<td class="cell100 column4"> {{ k }}, {{ l }} , {{ m }}, {{ n }}, {{ o }}, {{ p }}</td>
+											</tr>
+										{% endfor %}
+								</tbody>
+							</thead>
 						</table>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-
-
-<!--===============================================================================================-->
-	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
-<!--===============================================================================================-->
-	<script src="vendor/bootstrap/js/popper.js"></script>
-	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-<!--===============================================================================================-->
-	<script src="vendor/select2/select2.min.js"></script>
-<!--===============================================================================================-->
-	<script src="vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-	<script>
-		$('.js-pscroll').each(function(){
-			var ps = new PerfectScrollbar(this);
-
-			$(window).on('resize', function(){
-				ps.update();
-			})
-		});
-
-
-	</script>
-<!--===============================================================================================-->
-	<script src="js/main.js"></script>
 
 </body>
 </html>
