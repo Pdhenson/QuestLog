@@ -3,14 +3,53 @@
 {% block title %}Home{% endblock %}
 {% block style %}
   div.a {
-    font-size: 100px;
+    vertical-align: text-top;
+    text-align: right;
+    font-size: 30px;
   }
+  div.b {
+    vertical-align: text-top;
+    text-align: center;
+    font-family: fantasy;
+    font-weight: bold;
+    font-size: 80px;
+  }
+
+  .button:hover {background-color: #3e8e41}
+
+  .button:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+  }
+
+  .grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-areas: ". . . . ." ". My-Quests Post-Quest Available-Quests ." ". . . . .";
+}
+
+.My-Quests { grid-area: My-Quests; }
+
+.Available-Quests { grid-area: Available-Quests; }
+
+.Post-Quest { grid-area: Post-Quest; }
 {% endblock %}
 {% block content %}
 {% if user.is_authenticated %}
   <div class= "a">Welcome {{ user.username }}!</div>
-  <p><a href="{% url 'logout' %}">logout</a></p>
+  <div class= "b">Quest Log</div>
+  <p align= center>This Website will help you track your progress.</p>
+  <div class="grid-container">
+    <div class="My-Quests"><form> <button formaction= "MyQ" class= "button" name= "My Quests" >My Quests</button></form></div>
+    <div class="Available-Quests"><form> <button formaction= "newQ" class= "button" name= "Available Quests" >Available Quests</button></form></div>
+    <div class="Post-Quest"><form> <button formaction= "PostQuest" class= "button" name= "Create Quest" >Create Quest</button></form></div>
+</div>
+
 {% else %}
-  <p>You are not logged in</p>
+<div class= "b">Quest Log</div>
+<p align= center>This Website will help you track your progress.</p>
+<p align= center>You are not logged in</p>
 {% endif %}
 {% endblock %}

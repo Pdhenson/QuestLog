@@ -2,6 +2,7 @@ from django.db import models
 
 # Create your models here.
 class Quest(models.Model):
+
     user_name = models.CharField(max_length=30)
     title_field = models.CharField(max_length=30)
     date_field = models.DateField(auto_now=True)
@@ -12,6 +13,7 @@ class Quest(models.Model):
         return self.title_field
 
 class Steps(models.Model):
+    quest = models.ForeignKey(Quest, on_delete=models.CASCADE)
     user_name = models.CharField(max_length=30)
     title_field = models.CharField(max_length=30)
     date_start = models.DateField(auto_now=True)

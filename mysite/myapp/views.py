@@ -48,7 +48,9 @@ def newQ(request):
         new_steps = models.Steps()
         user = request.user
         models.Quest.objects.filter(id = values).update(user_name= str(user))
+        models.Steps.objects.filter(id = values).update(user_name= str(user))
         new_quest.save()
+        new_steps.save()
 
     q_list = models.Quest.objects.all()
     s_list = models.Steps.objects.all()
@@ -102,6 +104,62 @@ def newQ(request):
     }
     return render(request, "newQ.html", context=context)
 
+def myQ(request):
+    #Form Submission
+
+    user = request.user
+    q_list = models.Quest.objects.all().filter(user_name= str(user))
+    s_list = models.Steps.objects.all().filter(user_name= str(user))
+
+    multi_list = []
+    title_list = []
+    titleId = []
+    task_list = []
+    stepId = []
+    step1_list = []
+    step2_list = []
+    step3_list = []
+    step4_list = []
+    step5_list = []
+
+
+
+    for i in range(0,2):
+        for item in q_list:
+            if i == 0:
+                title_list.append([item.title_field])
+                titleId.append(item.id)
+            elif i == 1:
+                task_list.append([item.task_field])
+
+    for j in range(0,5):
+        for item2 in s_list:
+            if j == 0:
+                step1_list.append([item2.step_one])
+                stepId.append(item2.id)
+            elif j == 1:
+                step2_list.append([item2.step_two])
+            elif j == 2:
+                step3_list.append([item2.step_three])
+            elif j == 3:
+                step4_list.append([item2.step_four])
+            elif j == 4:
+                step5_list.append([item2.step_five])
+
+
+        multi_list = zip(title_list, task_list, step1_list, step2_list, step3_list, step4_list, step5_list, titleId, stepId)
+
+
+
+    context = {
+        "body":"Welcome to the Quest Board!",
+        "title":"Assignment 5 Quest Board!",
+        "next":"Next",
+        "multi_list":multi_list,
+
+    }
+    return render(request, "myQ.html", context=context)
+
 def quests_json(request):
     i_list = models.Quest.objects.all()
     resp_list = {}
@@ -117,6 +175,7 @@ def post_quest(request):
             new_quest = models.Quest()
             new_steps = models.Steps()
             new_quest.title_field = form_instance.cleaned_data["title_field"]
+            new_steps.Quest(new_quest)
             new_steps.title_field = form_instance.cleaned_data["title_field"]
             new_quest.task_field = form_instance.cleaned_data["task_field"]
             new_steps.step_one = form_instance.cleaned_data["step_one"]
@@ -124,8 +183,8 @@ def post_quest(request):
             new_steps.step_three = form_instance.cleaned_data["step_three"]
             new_steps.step_four = form_instance.cleaned_data["step_four"]
             new_steps.step_five = form_instance.cleaned_data["step_five"]
-            new_steps.save()
             new_quest.save()
+            new_steps.save()
             form_instance = forms.QuestForm()
         else:
             form_instance = forms.QuestForm()
