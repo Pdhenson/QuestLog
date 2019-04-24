@@ -238,12 +238,7 @@ def myQ(request):
                 percTotal += 1;
             if item2.step_five != None and item2.step_five != "" and item2.step_five != "NA":
                 percTotal += 1;
-            print(percTotal)
             percTotal_list.append(percTotal)
-
-
-    print(percTotal_list)
-
 
     multi_list = zip(title_list, task_list, step1_list, step2_list, step3_list, step4_list, step5_list, titleId, completion_percent_list, step1_bool_list, step2_bool_list, step3_bool_list, step4_bool_list, step5_bool_list, percTotal_list)
 
