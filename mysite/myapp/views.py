@@ -29,12 +29,16 @@ def index(request):
     n_list = []
     for item in quest_list:
         n_list = [item.title_field]
+
+
+
     context = {
         "body":"Welcome to the Quest Board!",
         "title":"Assignment 5 Quest Board!",
         "next":"Next",
         "n_list":n_list,
-        "form":form_instance
+        "form":form_instance,
+
     }
     return render(request, "base.html", context=context)
 
@@ -111,13 +115,53 @@ def myQ(request):
     if request.method == 'POST':
         value1 = request.POST.get('checkbox1One')
         value0 = request.POST.get('checkbox1Zero')
-        if value0 is not None:
-            s_list.filter(quest_id = value0).update(step_one_complete= 0)
-            print(value0)
-        if value1 is not None:
-            s_list.filter(quest_id = value1).update(step_one_complete= 1)
-            print(value1)
 
+        value2 = request.POST.get('checkbox2One')
+        value3 = request.POST.get('checkbox2Zero')
+
+        value4 = request.POST.get('checkbox3One')
+        value5 = request.POST.get('checkbox3Zero')
+
+        value6 = request.POST.get('checkbox4One')
+        value7 = request.POST.get('checkbox4Zero')
+
+        value8 = request.POST.get('checkbox5One')
+        value9 = request.POST.get('checkbox5Zero')
+
+        if value0 is not None:
+            s_list.filter(quest_id = value0).update(completion_percent = ( s_list.get(quest_id = value0).completion_percent - 1))
+            s_list.filter(quest_id = value0).update(step_one_complete= 0)
+        if value1 is not None:
+            s_list.filter(quest_id = value1).update(completion_percent = ( s_list.get(quest_id = value1).completion_percent + 1))
+            s_list.filter(quest_id = value1).update(step_one_complete= 1)
+
+        if value2 is not None:
+            s_list.filter(quest_id = value2).update(completion_percent = ( s_list.get(quest_id = value2).completion_percent + 1))
+            s_list.filter(quest_id = value2).update(step_two_complete= 1)
+        if value3 is not None:
+            s_list.filter(quest_id = value3).update(completion_percent = ( s_list.get(quest_id = value3).completion_percent - 1))
+            s_list.filter(quest_id = value3).update(step_two_complete= 0)
+
+        if value4 is not None:
+            s_list.filter(quest_id = value4).update(completion_percent = ( s_list.get(quest_id = value4).completion_percent + 1))
+            s_list.filter(quest_id = value4).update(step_three_complete= 1)
+        if value5 is not None:
+            s_list.filter(quest_id = value5).update(completion_percent = ( s_list.get(quest_id = value5).completion_percent - 1))
+            s_list.filter(quest_id = value5).update(step_three_complete= 0)
+
+        if value6 is not None:
+            s_list.filter(quest_id = value6).update(completion_percent = ( s_list.get(quest_id = value6).completion_percent + 1))
+            s_list.filter(quest_id = value6).update(step_four_complete= 1)
+        if value7 is not None:
+            s_list.filter(quest_id = value7).update(completion_percent = ( s_list.get(quest_id = value7).completion_percent - 1))
+            s_list.filter(quest_id = value7).update(step_four_complete= 0)
+
+        if value8 is not None:
+            s_list.filter(quest_id = value8).update(completion_percent = ( s_list.get(quest_id = value8).completion_percent + 1))
+            s_list.filter(quest_id = value8).update(step_five_complete= 1)
+        if value9 is not None:
+            s_list.filter(quest_id = value9).update(completion_percent = ( s_list.get(quest_id = value9).completion_percent - 1))
+            s_list.filter(quest_id = value9).update(step_five_complete= 0)
 
     multi_list = []
     multi_checkbox = []
@@ -138,6 +182,9 @@ def myQ(request):
     step4_bool_list = []
     step5_bool_list = []
 
+    percTotal = 0
+    percTotal_list = []
+
 
     for i in range(0,2):
         for item in q_list:
@@ -150,6 +197,7 @@ def myQ(request):
 
     for j in range(0,6):
         for item2 in s_list:
+            percTotal = 0
             if j == 0:
                 step1_list.append(item2.step_one)
                 stepId.append(item2.id)
@@ -180,9 +228,24 @@ def myQ(request):
                     step5_list.append(item2.step_five)
             elif j == 5:
                 completion_percent_list.append(item2.completion_percent)
+            if item2.step_one != None and item2.step_one != "" and item2.step_one != "NA":
+                percTotal += 1;
+            if item2.step_two != None and item2.step_two != "" and item2.step_two != "NA":
+                percTotal += 1;
+            if item2.step_three != None and item2.step_three != "" and item2.step_three != "NA":
+                percTotal += 1;
+            if item2.step_four != None and item2.step_four != "" and item2.step_four != "NA":
+                percTotal += 1;
+            if item2.step_five != None and item2.step_five != "" and item2.step_five != "NA":
+                percTotal += 1;
+            print(percTotal)
+            percTotal_list.append(percTotal)
 
 
-    multi_list = zip(title_list, task_list, step1_list, step2_list, step3_list, step4_list, step5_list, titleId, completion_percent_list, step1_bool_list, step2_bool_list, step3_bool_list, step4_bool_list, step5_bool_list)
+    print(percTotal_list)
+
+
+    multi_list = zip(title_list, task_list, step1_list, step2_list, step3_list, step4_list, step5_list, titleId, completion_percent_list, step1_bool_list, step2_bool_list, step3_bool_list, step4_bool_list, step5_bool_list, percTotal_list)
 
     context = {
         "body":"Welcome to the Quest Board!",
@@ -191,6 +254,8 @@ def myQ(request):
         "multi_list":multi_list,
         "multi_checkbox":multi_checkbox,
         "NA":"NA",
+        "percTotal":percTotal
+
 
 
 

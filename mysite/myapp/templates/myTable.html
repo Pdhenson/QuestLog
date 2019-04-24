@@ -146,7 +146,8 @@ transform: translateY(4px);
 								<th class="cell100 column2">Description</th>
 								<th class="cell100 column3">Steps</th>
 								<tbody>
-									{% for i, j, k, l, m, n, o, p, q, r, s, t, u, v in multi_list  %}
+									{% for i, j, k, l, m, n, o, p, q, r, s, t, u, v, w in multi_list  %}
+										{{ setZero }}
 										<form method="POST" action="">{% csrf_token %}
 											<tr class="row100 body">
 												<td class="cell100 column1"></td>
@@ -155,26 +156,92 @@ transform: translateY(4px);
 												<td class="cell100 column4">
 														{% ifnotequal k NA %}
 															{% ifequal r 0 %}
-																<pre>{% csrf_token %}<label class="container">{{ k }} <input type="checkbox" value={{ p }} name="checkbox1One"><span class="checkmark"></span></label></pre>
+																<pre><label class="container">{{ k }}{{ w }} <input type="checkbox" ><span class="checkmark"></span></label></pre>
 															{% endifequal %}
 															{% if r == 1 %}
-																<pre>{% csrf_token %}<label class="container">{{ k }} <input type="checkbox" value={{ p }} name="checkbox1Zero" checked= "checked"><span class="checkmark"></span></label></pre>
+																<pre><label class="container">{{ k }} <input type="checkbox" checked= "checked"><span class="checkmark"></span></label></pre>
 															{% endif %}
 														{% endifnotequal %}
 														{% ifnotequal l NA %}
-															<pre><label class="container">{{ l }} <input type="checkbox"><span class="checkmark"></span></label></pre>
+															{% ifequal s 0 %}
+																<pre><label class="container">{{ l }} <input type="checkbox" ><span class="checkmark"></span></label></pre>
+															{% endifequal %}
+															{% if s == 1 %}
+																<pre><label class="container">{{ l }} <input type="checkbox" checked= "checked"><span class="checkmark"></span></label></pre>
+															{% endif %}
 														{% endifnotequal %}
 														{% ifnotequal m NA %}
-															<pre><label class="container">{{ m }} <input type="checkbox" checked="checked"><span class="checkmark"></span></label></pre>
+															{% ifequal t 0 %}
+																<pre><label class="container">{{ m }} <input type="checkbox" ><span class="checkmark"></span></label></pre>
+															{% endifequal %}
+															{% if t == 1 %}
+																<pre><label class="container">{{ m }} <input type="checkbox" checked= "checked"><span class="checkmark"></span></label></pre>
+															{% endif %}
 														{% endifnotequal %}
 														{% ifnotequal n NA %}
-															<pre><label class="container">{{ n }} <input type="checkbox" checked="checked"><span class="checkmark"></span></label></pre>
+															{% ifequal u 0 %}
+																<pre><label class="container">{{ n }} <input type="checkbox" ><span class="checkmark"></span></label></pre>
+															{% endifequal %}
+															{% if u == 1 %}
+																<pre><label class="container">{{ n }} <input type="checkbox" checked= "checked"><span class="checkmark"></span></label></pre>
+															{% endif %}
 														{% endifnotequal %}
 														{% ifnotequal o NA %}
-															<pre><label class="container">{{ o }} <input type="checkbox" checked="checked"><span class="checkmark"></span></label></pre>
+															{% ifequal v 0 %}
+																<pre><label class="container">{{ o }} <input type="checkbox" ><span class="checkmark"></span></label></pre>
+															{% endifequal %}
+															{% if v == 1 %}
+																<pre><label class="container">{{ o }} <input type="checkbox" checked= "checked"><span class="checkmark"></span></label></pre>
+															{% endif %}
 														{% endifnotequal %}
 
-														Completion Status: <progress max= "100" value={{ q }}>Completion Status</progress>
+
+
+														<pre>Completion Status:  <progress max= {{ w }}  value={{ q }}>Completion Status</progress></pre>
+
+
+
+														{% ifnotequal k NA %}
+															{% ifequal r 0 %}
+																<button type="submit" value={{ p }} name="checkbox1One" class= "button">Complete Step 1</button>
+															{% endifequal %}
+															{% if r == 1 %}
+																<button type="submit" value={{ p }} name="checkbox1Zero" class= "button">Reset Step 1</button>
+															{% endif %}
+														{% endifnotequal %}
+														{% ifnotequal l NA %}
+															{% ifequal s 0 %}
+																<button type="submit" value={{ p }} name="checkbox2One" class= "button">Complete Step 2</button>
+															{% endifequal %}
+															{% if s == 1 %}
+																<button type="submit" value={{ p }} name="checkbox2Zero" class= "button">Reset Step 2</button>
+															{% endif %}
+														{% endifnotequal %}
+														{% ifnotequal m NA %}
+															{% ifequal t 0 %}
+																<button type="submit" value={{ p }} name="checkbox3One" class= "button">Complete Step 3</button>
+															{% endifequal %}
+															{% if t == 1 %}
+																<button type="submit" value={{ p }} name="checkbox3Zero" class= "button">Reset Step 3</button>
+															{% endif %}
+														{% endifnotequal %}
+														{% ifnotequal n NA %}
+															{% ifequal u 0 %}
+																<button type="submit" value={{ p }} name="checkbox4One" class= "button">Complete Step 4</button>
+															{% endifequal %}
+															{% if u == 1 %}
+																<button type="submit" value={{ p }} name="checkbox4Zero" class= "button">Reset Step 4</button>
+															{% endif %}
+														{% endifnotequal %}
+														{% ifnotequal o NA %}
+															{% ifequal v 0 %}
+																<button type="submit" value={{ p }} name="checkbox5One" class= "button">Complete Step 5</button>
+																{% endifequal %}
+																{% if v == 1 %}
+																<button type="submit" value={{ p }} name="checkbox5Zero" class= "button">Reset Step 5</button>
+																{% endif %}
+														{% endifnotequal %}
+
 													</td>
 											</tr>
 										</form>
