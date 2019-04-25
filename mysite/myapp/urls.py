@@ -8,5 +8,4 @@ urlpatterns = [
     path('myQ', views.myQ),
     path('PostQuest', views.post_quest),
     path('quests/', views.quests_json),
-
 ]
