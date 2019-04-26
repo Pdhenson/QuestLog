@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+{% if user.is_authenticated %}
+
+<form method="POST" action ="">{% csrf_token %}<table>{{ form }}</table><input type="submit" value="Add Quest"</input></form>
+
+{% else %}
+
+<p align= center>You are not logged in</p>
+
+{% endif %}
+{% endblock %}
+</body>
+  </html>

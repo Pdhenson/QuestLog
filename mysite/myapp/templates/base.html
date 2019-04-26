@@ -1,0 +1,35 @@
+{% load static %}
+{%include "NavBar.html"%}
+<!DOCTYPE html>
+<html class="no-js" lang="en" dir="ltr">
+  <head>
+    {% block head %}{% endblock %}
+    <style>
+    {% block style %}{% endblock %}
+    </style>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{% static "css/foundation.css" %}">
+    <link rel="stylesheet" href="{% static "css/app.css" %}">
+</head>
+<body>
+  {% block content %}
+  {% endblock %}
+  {% block script %}
+  
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <script src="{% static "myvue.js" %}"></script>
+  <script src="{% static "vue.js" %}"></script>
+  <script src="{% static "js/vendor/jquery.js" %}"></script>
+  <script src="{% static "js/vendor/what-input.js" %}"></script>
+  <script src="{% static "foundation.js" %}"></script>
+  <script src="{% static "js/app.js" %}"></script>
+  {% endblock %}
+
+
+
+</body>
+</html>
