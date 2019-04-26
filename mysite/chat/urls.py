@@ -1,8 +1,8 @@
-from django.urls import path
+from django.urls import re_path
 
 from . import views
 
 urlpatterns = [
-    path('index/', views.index),
-    path('QuestLogChat/', views.room)
+    re_path('^$', views.index, name='index'),
+    re_path(r'^(?P<room_name>[^/]+)/$', views.room, name='room'),
 ]
